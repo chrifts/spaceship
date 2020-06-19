@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &403028403515867734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4058211402136359948}
+  - component: {fileID: 513254564032986847}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: no_destroy_on_load
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4058211402136359948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403028403515867734}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 339.1858, y: 480.25214, z: -52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &513254564032986847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403028403515867734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afadda438af852541ad5fec48ce332f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevel: 1
+  coins: 0
+  coins_multiplier: 1
+  ship_fire_rate: 0.075
+  ship_fire_power: 100
+  bullet_speed: 15
+  background_music_main: {fileID: 0}
+  background_music_game: {fileID: 0}
+  extra_weapons:
+  - {fileID: 1291508112735322674, guid: 6efb2e46a306d9e449f8c190813d36b0, type: 3}
+  - {fileID: 1291508112735322674, guid: ef0c895f2b5496745adde081236304d8, type: 3}
+  skills:
+  - {fileID: 5058110612495004230, guid: 1c21a0c21d35b954881813c408389b02, type: 3}
+  weapon_equiped: {fileID: 1291508112735322674, guid: 6efb2e46a306d9e449f8c190813d36b0,
+    type: 3}
