@@ -18,7 +18,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject spawnZone;
     public RectTransform spawnZone_rect;
     private GameManagerScript gameManager;
-    private bool levelInProgress = true;
+    public bool levelInProgress = true;
     private SliderEnemies slider;
     public Canvas die_canvas_UI;
     public Transform die_canvas;
@@ -53,8 +53,12 @@ public class EnemyManager : MonoBehaviour
                 if(active_enemies > 0) {
                     total_enemies_per_level = active_enemies;
                 } else {
+                    
                     levelInProgress = false;
-                    LevelSuccess();
+                    active_enemies = 0;
+                    total_enemies_per_level = 0;
+                    enemies_to_spawn = 0;
+                    playerController.end_level("Level success", true);
                 }
             }
             if(active_enemies == enemies_to_spawn) {
@@ -75,7 +79,7 @@ public class EnemyManager : MonoBehaviour
                     active_enemies = i;
                 }      
             } 
-        }   
+        }  
     }
     
     Vector3 GetBottomLeftCorner(RectTransform rt)
@@ -92,19 +96,5 @@ public class EnemyManager : MonoBehaviour
         if(total_enemies_per_level > 0) {
             total_enemies_per_level -= 1;
         }
-    }
-
-    public void LevelSuccess() {
-        playerController.end_level("Level success", true);
-        // Debug.Log("LevelSuccess");
-        // Time.timeScale = 0.0F;
-        // Text canvas_title;
-        // canvas_title = GameObject.Find("you_die").GetComponent<Text>();
-        // canvas_title.text = "Level success";
-        // die_canvas_UI.planeDistance = 0;
-        // gameManager.currentLevel += 1;
-        // SaveGame.Save<int> ("currentLevel", gameManager.currentLevel);
-        
-        //El cambio de escena lo realizan los botones get coins
     }
 }

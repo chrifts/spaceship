@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public bool freeze_enemies = false;
     private GameObject[] enemies;
     public Canvas die_canvas;
+    public bool is_inmune = false;
     void Start() {
         GM = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         shootController = this.GetComponent<ShootController>();    
@@ -36,14 +37,19 @@ public class PlayerController : MonoBehaviour
     }
 
     public void end_level(string message, bool level_success = false) {
-        Text canvas_title;
-        canvas_title = GameObject.Find("you_die").GetComponent<Text>();
+        
+        Text canvas_title = GameObject.Find("you_die").GetComponent<Text>();
         canvas_title.text = message;
         die_canvas.planeDistance = 0;
         Text gained_coins_text = GameObject.Find("coins_won").GetComponent<Text>();
         gained_coins_text.text = "You won " + GM.KiloFormat(GM.gained_coins) + " Coins";
         Time.timeScale = 0.0F;
-        GameObject.Find("PlayerController").GetComponent<BoxCollider2D>().enabled = false;
+        
+        if(!level_success) {
+            Destroy(GameObject.Find("PlayerController").GetComponent<Draggable>());
+            Destroy(GameObject.Find("Player"));
+        }
+            
         GM.background_music_game.Stop();
         Debug.Log("LEVEL ENDED");
         if(level_success) {

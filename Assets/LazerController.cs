@@ -68,24 +68,23 @@ public class LazerController : MonoBehaviour
     void shot() {
         line.enabled = true;
         spark.SetActive(true);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up );
-        //Debug.DrawLine(output.transform.position, Vector2.up);
-        line.SetPosition(1, transform.position);
-        // If it hits something...
-        if (hit.collider != null)
+        RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.up, Mathf.Infinity, 1 << LayerMask.NameToLayer("EnemyLayer"));
+        Debug.DrawLine (transform.position, transform.position + transform.up*10f, Color.red);
+        if (hit)
         {
-            Vector2 hitPos;
-            
             Debug.Log(hit.collider.name);
-            if(hit.collider.name == "bullet_limit" || hit.collider.tag == "enemies") {
-                hitPos = new Vector3(transform.position.x, hit.transform.position.y, 1);
-                line.SetPosition(0, hitPos);
-                spark.transform.position = new Vector3(transform.position.x + 0.1f, hit.transform.position.y - 0.2f, 0);
-                if(hit.collider.tag == "enemies") {
-                    hit.collider.gameObject.GetComponent<EnemyAI>().takeDamage(WeaponStats.power);
-                    GM.coins += 1 * GM.coins_multiplier;
-                }
+            line.SetPosition (0, transform.position);
+            line.SetPosition (1, hit.point);
+            spark.transform.position = hit.point;
+            Collider2D collider = hit.collider;
+            if(hit.collider.tag == "enemies") {
+                hit.collider.gameObject.GetComponent<EnemyAI>().takeDamage(WeaponStats.power);
+                GM.coins += 1 * GM.coins_multiplier;
             }
+        } else {
+            line.SetPosition (0, transform.position);
+            line.SetPosition (1, transform.position + (transform.up * 10)); // (transform.right * ((float)offset + range)) can be used for casting not from center.
         }
     }
+    
 }

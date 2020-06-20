@@ -45,7 +45,7 @@ public class UpgradeController : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         extraWeapons = gameManager.extra_weapons;
-        // SaveGame.Clear();
+        //SaveGame.Clear();
         
         power_lvl_multi = Load_int("power_lvl_multi");
         rate_lvl_multi = Load_int("main_rate_lvl_multi");

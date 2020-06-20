@@ -179,6 +179,9 @@ public class GameManagerScript : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
       if(scene.name == "Game") {
+        Time.timeScale += Time.deltaTime * 0.5f;
+        Time.timeScale = 1;
+        Time.fixedDeltaTime = 0.02F;
         background_music_main.Stop();
         background_music_game.Play();
         started_coins = coins;

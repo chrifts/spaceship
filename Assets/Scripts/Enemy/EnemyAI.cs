@@ -61,7 +61,11 @@ public class EnemyAI : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other) {
         if(other.collider.name == "Player") {
-            other.collider.GetComponent<PlayerController>().end_level("You die");
+            PlayerController playerController;
+            playerController = other.collider.GetComponent<PlayerController>();
+            if(!playerController.is_inmune) {
+                playerController.end_level("You died");
+            }
         }
         if(other.collider.name == "left" || other.collider.name == "right") {
             if(transform.eulerAngles.z > 0)     

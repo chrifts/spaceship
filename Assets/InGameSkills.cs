@@ -22,6 +22,7 @@ public class InGameSkills : MonoBehaviour
         touchedPanel = false;
 
         if(plasma_shield_cooldown > 0) {
+            
             plasma_shield_cooldown -= Time.deltaTime;
         }
     }

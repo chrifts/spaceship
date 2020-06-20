@@ -456,6 +456,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5384770043462269342, guid: 3531a491cd59f52409722d205f7f38fa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5459224158882625900, guid: 3531a491cd59f52409722d205f7f38fa,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -907,12 +912,17 @@ PrefabInstance:
     - target: {fileID: 1256637085808809303, guid: 7fc29b94b93020a45a7f2c6e1bf22cf7,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1256637085808809303, guid: 7fc29b94b93020a45a7f2c6e1bf22cf7,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1256637085808809303, guid: 7fc29b94b93020a45a7f2c6e1bf22cf7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6556915178097190479, guid: 7fc29b94b93020a45a7f2c6e1bf22cf7,
         type: 3}
