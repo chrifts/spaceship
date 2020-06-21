@@ -19,18 +19,19 @@ public class BulletController : MonoBehaviour
         transform.Translate(0, Time.deltaTime * gameManager.bullet_speed, 0);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if(collision.name == "Enemy_1(Clone)") {
+        //Debug.Log(collision.name);
+        if(collision.tag == "enemies") {
             
             Destroy(this.gameObject);
             gameManager.coins += 1 * gameManager.coins_multiplier;
             EnemyAI enemy;
-            enemy = collision.gameObject.GetComponent<EnemyAI>();
+            enemy = collision.gameObject.GetComponentInParent<EnemyAI>();
             if(enemy.life > 0) {
                 enemy.takeDamage(gameManager.ship_fire_power);
 
-                Instantiate(bullet_explosion, transform.position +  (Vector3.up * y_offset_animation), transform.rotation);
+                Instantiate(bullet_explosion, new Vector3(transform.position.x, transform.position.y, -2) +  (Vector3.up * y_offset_animation), transform.rotation);
             }
             
         }

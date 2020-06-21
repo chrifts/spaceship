@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1256637085808809302}
   - component: {fileID: 7266602083851454884}
   - component: {fileID: 5295947302180494899}
-  - component: {fileID: 1071078528}
-  - component: {fileID: 2163249894614482545}
+  - component: {fileID: 6989603500150519363}
+  - component: {fileID: 2110953949465828276}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -101,6 +101,7 @@ MonoBehaviour:
   resetTime: 5
   freeze_enemies: 0
   die_canvas: {fileID: 0}
+  is_inmune: 0
 --- !u!114 &5295947302180494899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,40 +125,33 @@ MonoBehaviour:
   PlayerFireRate: 0.125
   main_weapon_level: 0
   extraWeapons: []
---- !u!50 &1071078528
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!54 &6989603500150519363
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256637085808809297}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 100
-  m_LinearDrag: 0
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_UseGravity: 0
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_Constraints: 120
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!58 &2163249894614482545
-CircleCollider2D:
+--- !u!136 &2110953949465828276
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256637085808809297}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.7}
-  serializedVersion: 2
-  m_Radius: 0.7
+  m_Enabled: 1
+  m_Radius: 0.73
+  m_Height: 2.12
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}

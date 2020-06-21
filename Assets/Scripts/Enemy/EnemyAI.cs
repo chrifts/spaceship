@@ -19,7 +19,8 @@ public class EnemyAI : MonoBehaviour
     private GameObject SpawnZone;
     private GameObject gameZone;
     public float distance_to_gamezone;
-    public Sprite[] sprites; 
+    // public Sprite[] sprites;
+    public GameObject[] sprites;
     public bool is_freezed = false;
     public Text life_ui;
     public bool lets_move = false;
@@ -27,6 +28,11 @@ public class EnemyAI : MonoBehaviour
     private RectTransform life_canvas;
 
     public GameObject[] improves;
+
+    public GameObject destroyed;
+    private Mesh instantiated_mesh;
+    public float ChanceOfDropImprove = 30;  
+    
     void Start()
     {
         life_canvas = transform.Find("life_canvas").GetComponent<RectTransform>();
@@ -35,31 +41,21 @@ public class EnemyAI : MonoBehaviour
         enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         SpawnZone = GameObject.Find("Enemy_spawn_zone");
         currentLevel = gameManager.currentLevel;
-
-        // if(currentLevel < 20) {
-        //     maxSpeed = Random.Range(2, 5);
-        // }
-        // else if(currentLevel < 60) {
-        //     maxSpeed = Random.Range(2, 6);
-        // }
-        // else if(currentLevel < 100) {
-        //     maxSpeed = Random.Range(2, 7);
-        // } else if(currentLevel > 100) {
-        //     maxSpeed = Random.Range(2, (currentLevel / 10));
-        // }
-
         maxSpeed = 1;
-        
-        
-        //Debug.Log("No se encuentra GameManager xq hay que iniciar el juego desde mainmenu");
-        gameObject.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, 4)];
+        GameObject Instantiated_Enemy;
+        int random_range = Random.Range(0, 2);
+        Instantiated_Enemy = (Instantiate(sprites[random_range], transform)) as GameObject;
+        Instantiated_Enemy.transform.SetParent(transform);
+        Instantiated_Enemy.transform.localScale = transform.localScale;
 
         life = currentLevel == 1 ? Random.Range(1000, 2000) : Random.Range(1000, 2000) * currentLevel;
         StartCoroutine(start_move());
         Respawn();
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
+    void OnCollisionEnter(Collision other) {
+        Debug.Log(other.collider.name);
+        
         if(other.collider.name == "Player") {
             PlayerController playerController;
             playerController = other.collider.GetComponent<PlayerController>();
@@ -76,25 +72,26 @@ public class EnemyAI : MonoBehaviour
     }
 
     public IEnumerator start_move() {
-        yield return new WaitForSeconds(Random.Range(0, 2));
+        yield return new WaitForSeconds(Random.Range(0, 4));
         lets_move = true;
     }
 
     public void die() {
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+        Instantiate(destroyed, transform.position, transform.rotation);
         gameManager.coins += 100 * gameManager.coins_multiplier;
-        const int probabilityWindow = 30;
+        
         int randomChance = Random.Range(0, 100);
-
-        if (randomChance < probabilityWindow)
+        if (randomChance < ChanceOfDropImprove)
         {
             dropImprove();
         }
         enemyManager.RemoveActiveEnemy();
+        Destroy(this.gameObject);
         
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter(Collider collision)
     {
         if(collision.name == "edge_bottom") {
             Respawn();
@@ -121,32 +118,15 @@ public class EnemyAI : MonoBehaviour
         {
             float number = Random.Range(2.0f, 4.0f);
             time_to_random_move += number;
-            // PROGRESSIVE MOVE DIVISOR
-            // Mientras X aumente, Y también, pero la diferencia entre ellos tiene que ser cada vez menos
-            // En un punto X e Y van a valer lo mismo.
-
-            // EJEMPLOS:
-            // X = 100
-            // Y = 50.75
-
-            // X = 101
-            // Y = 50.5
-
-            // X = 102
-            // Y = 50
             if(currentLevel > 1) {
                 moveDivisor = currentLevel * 10 / 100;
                 if(!(moveDivisor >= 2)) {
                     moveDivisor = 2;
                 }
             }
-            // var euler = transform.eulerAngles;
-            // euler.z = Random.Range(-91.0f, 91.0f);
-            // transform.eulerAngles = euler * Time.deltaTime * 10;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0,Random.Range(-91.0f, 91.0f)), Time.deltaTime * 10);
         }
         if(!is_freezed) {
-            
             if(lets_move) {
                 transform.Translate(0, -Time.deltaTime * maxSpeed, 0);
             }
@@ -156,14 +136,14 @@ public class EnemyAI : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
     
-        GetComponent<SpriteRenderer>().color = Color.white;
+        //GetComponent<SpriteRenderer>().color = Color.white;
         //Shake
 
     }
 
     public void takeDamage(float qty) {
         
-        GetComponent<SpriteRenderer>().color = Color.red;
+        //GetComponent<SpriteRenderer>().color = Color.red;
         StartCoroutine(ExecuteAfterTime(0.1f));
         life -= qty;
         if(life <= 0) {
@@ -172,7 +152,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     public void Respawn() {
-        transform.position = new Vector3(SpawnZone.transform.position.x, SpawnZone.transform.position.y, 1);
+        transform.position = new Vector3(SpawnZone.transform.position.x, SpawnZone.transform.position.y, 0);
     }
 
     public void dropImprove() {

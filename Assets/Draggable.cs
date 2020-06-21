@@ -66,7 +66,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         
         //Use Offset To Prevent Sprite from Jumping to where the finger is
         Vector3 tempVec = mainCamera.ScreenToWorldPoint(eventData.position) + clickOffset;
-        tempVec.z = zAxis;
+        tempVec.z = 0;
         thePlayer.transform.position = tempVec;
     }
 

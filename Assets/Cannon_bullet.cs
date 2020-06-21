@@ -24,17 +24,17 @@ public class Cannon_bullet : MonoBehaviour
     }
     
     
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter(Collider other) {
         
         if(other.tag == "enemies") {
             Instantiate(explosion, new Vector3(transform.position.x, transform.position.y + y_expolosion_offset, 0), Quaternion.Euler(transform.rotation.x, transform.rotation.y, 260));
-            Collider2D[] enemies = Physics2D.OverlapCircleAll (transform.position + new Vector3(0, radius_offset, 0), expRadius);
+            Collider[] enemies = Physics.OverlapSphere (transform.position + new Vector3(0, radius_offset, 0), expRadius);
             
-            foreach(Collider2D en in enemies)
+            foreach(Collider en in enemies)
             {
                 
                 if(en.tag == "enemies") {
-                    en.GetComponent<EnemyAI>().takeDamage(WeaponStats.power);
+                    en.GetComponentInParent<EnemyAI>().takeDamage(WeaponStats.power);
                     GM.coins += 1 * GM.coins_multiplier;
                 }
                 

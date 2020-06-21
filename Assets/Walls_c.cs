@@ -24,12 +24,12 @@ public class Walls_c : MonoBehaviour {
         edge_bottom.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0,0,0));
         bottom_no_trigger.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0,0,0));   
 
-        WindZone.transform.localScale = new Vector3(Screen.width,500,0);
-        WindZone_Bottom.transform.localScale = new Vector3(Screen.width,500,0);
-        top.transform.localScale = new Vector3(Screen.width,40,0);
-        left.transform.localScale = new Vector3(50,Screen.height * 2,0);
-        right.transform.localScale = new Vector3(50, Screen.height * 2,0);
-        edge_bottom.transform.localScale = new Vector3(Screen.width,1,0);
-        bottom_no_trigger.transform.localScale = new Vector3(Screen.width,1,0);
+        // WindZone.transform.localScale = new Vector3(Screen.width,500,0);
+        // WindZone_Bottom.transform.localScale = new Vector3(Screen.width,500,0);
+        top.transform.localScale = new Vector3(Screen.width,20,1000);
+        left.transform.localScale = new Vector3(50,Screen.height * 2,1000);
+        right.transform.localScale = new Vector3(50, Screen.height * 2,1000);
+        edge_bottom.transform.localScale = new Vector3(Screen.width,1,1000);
+        bottom_no_trigger.transform.localScale = new Vector3(Screen.width,1,1000);
     }
 }

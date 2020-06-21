@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlasmaShield : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter(Collider other) {
         if(other.tag == "enemies") {
-            other.gameObject.GetComponent<EnemyAI>().die();
+            other.gameObject.GetComponentInParent<EnemyAI>().die();
         }
     }
 }

@@ -67,9 +67,9 @@ public class LazerController : MonoBehaviour
 
     void shot() {
         line.enabled = true;
-        spark.SetActive(true);
+        
         RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.up, Mathf.Infinity, 1 << LayerMask.NameToLayer("EnemyLayer"));
-        Debug.DrawLine (transform.position, transform.position + transform.up*10f, Color.red);
+        //Debug.DrawLine (transform.position, transform.position + transform.up*10f, Color.red);
         if (hit)
         {
             Debug.Log(hit.collider.name);
@@ -78,6 +78,7 @@ public class LazerController : MonoBehaviour
             spark.transform.position = hit.point;
             Collider2D collider = hit.collider;
             if(hit.collider.tag == "enemies") {
+                spark.SetActive(true);
                 hit.collider.gameObject.GetComponent<EnemyAI>().takeDamage(WeaponStats.power);
                 GM.coins += 1 * GM.coins_multiplier;
             }

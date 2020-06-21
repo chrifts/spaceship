@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         shootController = this.GetComponent<ShootController>();    
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter(Collider collision)
     {
         //Debug.Log(this.name + "COLLISION WITH " + collision.name);
         if(collision.name == "up_main_weapon(Clone)") {
@@ -64,8 +64,8 @@ public class PlayerController : MonoBehaviour
             enemies = GameObject.FindGameObjectsWithTag("enemies");
             foreach (var item in enemies) 
             {
-                item.GetComponent<EnemyAI>().is_freezed = true;
-                item.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                item.GetComponentInParent<EnemyAI>().is_freezed = true;
+                item.GetComponentInParent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
             
             current_buff -= Time.deltaTime;
@@ -73,8 +73,8 @@ public class PlayerController : MonoBehaviour
                 current_buff = resetTime;
                 foreach (var item in enemies) 
                 {
-                    item.GetComponent<EnemyAI>().is_freezed = false;
-                    item.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                    item.GetComponentInParent<EnemyAI>().is_freezed = false;
+                    item.GetComponentInParent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 }
                 freeze_enemies = false;
             }

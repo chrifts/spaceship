@@ -11,7 +11,7 @@ public class InGameSkills : MonoBehaviour
     public bool touchedPanel = false;
     void Start()
     {
-        plasma_shield_cooldown = 30;
+        plasma_shield_cooldown = 1;
         plasma_shield_cooldown_flag = plasma_shield_cooldown;
         GM = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
     }

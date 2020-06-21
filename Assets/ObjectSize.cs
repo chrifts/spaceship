@@ -9,6 +9,7 @@ public class ObjectSize : MonoBehaviour
     public float height;
     public RectTransform rt;
     public BoxCollider2D bc2d;
+    public BoxCollider BC;
 
     public BoxCollider2D playerController_zone;
     void Start()
@@ -17,6 +18,9 @@ public class ObjectSize : MonoBehaviour
             bc2d.size = new Vector2((Screen.width * width) * 2, 20);
         if(rt != null)
             rt.sizeDelta = new Vector2(Screen.width * width, height);
+
+        if(BC != null)
+            BC.size = new Vector3((Screen.width * width) * 2, 20, 200);
 
         if(playerController_zone != null)
             playerController_zone.size = new Vector2(Screen.width, Screen.height);
