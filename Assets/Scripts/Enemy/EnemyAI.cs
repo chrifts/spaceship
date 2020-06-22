@@ -152,7 +152,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     public void Respawn() {
-        transform.position = new Vector3(SpawnZone.transform.position.x, SpawnZone.transform.position.y, 0);
+        transform.position = new Vector3(SpawnZone.transform.position.x, SpawnZone.transform.position.y, 4);
     }
 
     public void dropImprove() {

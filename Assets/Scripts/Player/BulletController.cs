@@ -8,8 +8,10 @@ public class BulletController : MonoBehaviour
     GameManagerScript gameManager;
     public GameObject bullet_explosion;
     public float y_offset_animation = 0.8f;
+    public float zPos;
     void Start()
     {
+        zPos = 2;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
     }
 
@@ -31,7 +33,7 @@ public class BulletController : MonoBehaviour
             if(enemy.life > 0) {
                 enemy.takeDamage(gameManager.ship_fire_power);
 
-                Instantiate(bullet_explosion, new Vector3(transform.position.x, transform.position.y, -2) +  (Vector3.up * y_offset_animation), transform.rotation);
+                Instantiate(bullet_explosion, new Vector3(transform.position.x, transform.position.y, zPos) +  (Vector3.up * y_offset_animation), transform.rotation);
             }
             
         }

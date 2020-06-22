@@ -377,6 +377,8 @@ MonoBehaviour:
   height: 70
   rt: {fileID: 8508535338877851161}
   bc2d: {fileID: 0}
+  BC: {fileID: 0}
+  playerController_zone: {fileID: 0}
 --- !u!1 &4961391988120831378
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +660,8 @@ MonoBehaviour:
   height: 75
   rt: {fileID: 654271179466689907}
   bc2d: {fileID: 0}
+  BC: {fileID: 0}
+  playerController_zone: {fileID: 0}
 --- !u!1001 &1407500727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -839,7 +843,7 @@ PrefabInstance:
     - target: {fileID: 1256637085808809303, guid: 7fc29b94b93020a45a7f2c6e1bf22cf7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1256637085808809303, guid: 7fc29b94b93020a45a7f2c6e1bf22cf7,
         type: 3}

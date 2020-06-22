@@ -19,7 +19,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         mainCamera = Camera.main;
         mainCamera.gameObject.AddComponent<Physics2DRaycaster>();
-        zAxis = transform.position.z;
+        mainCamera.GetComponent<Physics2DRaycaster>().eventMask =  1 << LayerMask.NameToLayer("PlayerController");
+        zAxis = 4;
     }
 
     void Update() {
@@ -57,21 +58,22 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        Debug.Log("DRAG START");
         clickOffset = thePlayer.transform.position - mainCamera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, zAxis));
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        
+        Debug.Log("DRAG IN PROCESS");
         //Use Offset To Prevent Sprite from Jumping to where the finger is
         Vector3 tempVec = mainCamera.ScreenToWorldPoint(eventData.position) + clickOffset;
-        tempVec.z = 0;
+        tempVec.z = zAxis;
         thePlayer.transform.position = tempVec;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        Debug.Log("DRAG FINISHED");
         Time.timeScale = 0.05F;
         Time.fixedDeltaTime = 0.02F * Time.timeScale;
     }

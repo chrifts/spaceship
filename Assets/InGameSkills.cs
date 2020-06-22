@@ -36,7 +36,7 @@ public class InGameSkills : MonoBehaviour
             GameObject ps;
             GameObject Instantiated_Skill;
             ps = GM.skills[0];
-            Instantiated_Skill = (Instantiate(ps, new Vector3(player_transform.position.x, player_transform.position.y, -0.1f), player_transform.rotation )) as GameObject;
+            Instantiated_Skill = (Instantiate(ps, new Vector3(player_transform.position.x, player_transform.position.y, player_transform.position.z - 0.1f), player_transform.rotation )) as GameObject;
             Instantiated_Skill.transform.SetParent(player_transform);
             plasma_shield_cooldown = plasma_shield_cooldown_flag;
         }

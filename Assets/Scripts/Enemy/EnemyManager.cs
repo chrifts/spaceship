@@ -73,7 +73,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     //Vector3 spawnPosition = GetBottomLeftCorner(spawnZone_rect) - new Vector3(UnityEngine.Random.Range(0, spawnZone_rect.rect.x), UnityEngine.Random.Range(0, spawnZone_rect.rect.y), 1);
 
-                    CloneEnemy = (Instantiate(enemyObject, spawnZone.transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0))) as GameObject;    
+                    CloneEnemy = (Instantiate(enemyObject, spawnZone.transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y, 4))) as GameObject;    
                     CloneEnemy.transform.localScale = Vector3.one * UnityEngine.Random.Range(0.5f, 1.0f);
                     //CloneEnemy.GetComponent<Rigidbody2D>().velocity = movement * maxSpeed;
                     active_enemies = i;
